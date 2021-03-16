@@ -34,6 +34,7 @@ enum planck_keycodes {
   QWERTY = SAFE_RANGE,
   LOCK,
   ALTF4,
+  SCREENSHOT,
   CTLINS,
   SHFTINS,
 };
@@ -181,10 +182,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_ONESHOT] = LAYOUT_planck_grid(
-    _______, _______, KC_F11,  KC_F12,  KC_F2,   KC_F8, _______, _______, _______, _______, _______, KC_SLEP,
-    KC_CAPS, _______, _______, KC_END,  KC_HOME, ALTF4, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, CTLINS,  SHFTINS, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, LOCK
+    _______, _______, KC_F11,     KC_F12,  KC_F2,   KC_F8, _______, _______, _______, _______, _______, KC_SLEP,
+    KC_CAPS, _______, SCREENSHOT, KC_END,  KC_HOME, ALTF4, _______, _______, _______, _______, _______, _______,
+    _______, _______, _______,    CTLINS,  SHFTINS, _______, _______, _______, _______, _______, _______, _______,
+    _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______, LOCK
 ),
 
 /* ALT
@@ -303,6 +304,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             register_code(KC_LALT);
             tap_code(KC_F4);
             unregister_code(KC_LALT);
+        }
+        break;
+    case SCREENSHOT:
+        if (record -> event.pressed) {
+            SEND_STRING(SS_LGUI(SS_LSFT("s")));
         }
         break;
     case CTLINS:
