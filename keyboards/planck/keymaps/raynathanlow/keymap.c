@@ -114,6 +114,18 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define MOUSE TT(_MOUSE)
 #define GAME TT(_GAME)
 
+// Left-hand home row mods
+#define GUI_A LGUI_T(KC_A)
+#define ALT_S LALT_T(KC_S)
+#define SFT_D LSFT_T(KC_D)
+#define CTL_F LCTL_T(KC_F)
+
+// Right-hand home row mods
+#define CTL_J RCTL_T(KC_J)
+#define SFT_K RSFT_T(KC_K)
+#define ALT_L LALT_T(KC_L)
+#define GUI_SCLN RGUI_T(KC_SCLN)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -128,10 +140,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
-    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,    KC_BSPC,
-    KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN, KC_QUOT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH, MT(MOD_RSFT, KC_ENT),
-    _______, ONESHOT, GUI,     ALT,     KC_LCTL, LOWER,   RAISE,   KC_SPC,  MOUSE  , GAME,   KC_DOWN, KC_UP
+    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,     KC_BSPC,
+    KC_ESC,  GUI_A,   ALT_S,   SFT_D,   CTL_F,   KC_G,   KC_H,    CTL_J,   SFT_K,   ALT_L,  GUI_SCLN, KC_QUOT,
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT, KC_SLSH,  MT(MOD_RSFT, KC_ENT),
+    _______, ONESHOT, GUI,     ALT,     KC_LCTL, LOWER,   RAISE,   KC_SPC,  MOUSE  , GAME,   KC_DOWN,  KC_UP
 ),
 
 /* Lower
@@ -323,4 +335,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     }
   return true;
+}
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case GUI_A:
+        case GUI_SCLN:
+            return TAPPING_TERM;
+        case ALT_S:
+        case ALT_L:
+            return TAPPING_TERM;
+        case SFT_D:
+        case SFT_K:
+            return TAPPING_TERM;
+        case CTL_F:
+        case CTL_J:
+            return TAPPING_TERM;
+        default:
+            return TAPPING_TERM;
+    }
 }
