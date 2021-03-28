@@ -195,7 +195,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ONESHOT] = LAYOUT_planck_grid(
     _______, _______, KC_F11,     KC_F12,  KC_F2,   KC_F8, _______, _______, _______, _______, _______, KC_SLEP,
-    KC_CAPS, _______, SCREENSHOT, KC_END,  KC_HOME, ALTF4, _______, _______, _______, _______, _______, _______,
+    KC_CAPS, _______, SCREENSHOT, KC_END,  KC_HOME, ALTF4, KC_TAPP, KC_TAPU, KC_TAPD, _______, _______, _______,
     _______, _______, _______,    CTLINS,  SHFTINS, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______, LOCK
 ),
