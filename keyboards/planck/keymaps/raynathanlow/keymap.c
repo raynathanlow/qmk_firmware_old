@@ -351,21 +351,19 @@ void matrix_scan_user(void) {  // The very important timer.
     }
 }
 
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+// TAPPING_FORCE_HOLD_PER_KEY
+bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case GUI_A:
-        case GUI_SCLN:
-            return TAPPING_TERM;
         case ALT_S:
-        case ALT_L:
-            return TAPPING_TERM;
         case SFT_D:
-        case SFT_K:
-            return TAPPING_TERM;
         case CTL_F:
         case CTL_J:
-            return TAPPING_TERM;
+        case SFT_K:
+        case ALT_L:
+        case GUI_SCLN:
+            return true;
         default:
-            return TAPPING_TERM;
+            return false;
     }
 }
