@@ -51,7 +51,7 @@ uint16_t alt_tab_timer     = 0;
 #define SYMBOLS OSL(_SYMBOLS)
 #define NAVIGATION TT(_NAVIGATION)
 #define MOUSE TO(_MOUSE)
-#define GAMING TT(_GAMING)
+#define GAMING TO(_GAMING)
 #define MEDIA TO(_MEDIA)
 
 // Left-hand home row mods
