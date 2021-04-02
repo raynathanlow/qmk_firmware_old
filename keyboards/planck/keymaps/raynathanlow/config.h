@@ -6,7 +6,7 @@
 #define ONESHOT_TAP_TOGGLE 2  /* Tapping this number of times holds the key until tapped once again. */
 #define ONESHOT_TIMEOUT 5000  /* Time (in ms) before the one shot key is released */
 
-#define TAPPING_TOGGLE 1 // Tapping this number of times toggles Tap-Toggle layer - TT(layer)
+#define TAPPING_TOGGLE 2 // Tapping this number of times toggles Tap-Toggle layer - TT(layer)
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT

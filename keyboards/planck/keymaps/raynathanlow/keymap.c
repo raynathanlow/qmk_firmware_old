@@ -17,7 +17,7 @@
 #include QMK_KEYBOARD_H
 #include "muse.h"
 
-enum planck_layers { _DEFAULT, _ONESHOT, _NUMBERS, _SYMBOLS, _NAVIGATION, _MOUSE, _GAMING, _MEDIA, _ADJUST, _ALT };
+enum planck_layers { _DEFAULT, _ONESHOT, _LAYERS, _SYMBOLS, _NAVIGATION, _MOUSE, _GAMING, _MEDIA, _ADJUST, _ALT };
 
 enum planck_keycodes {
     A_TAB = SAFE_RANGE,     // alt tab
@@ -47,7 +47,7 @@ bool     is_alt_tab_active = false;
 uint16_t alt_tab_timer     = 0;
 
 #define ONESHOT OSL(_ONESHOT)
-#define NUMBERS TT(_NUMBERS)
+#define LAYERS OSL(_LAYERS)
 #define SYMBOLS OSL(_SYMBOLS)
 #define NAVIGATION TT(_NAVIGATION)
 #define MOUSE TO(_MOUSE)
@@ -93,10 +93,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_DEFAULT] = LAYOUT_planck_grid(
-    KC_TAB,        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,     KC_U,   KC_I,    KC_O,    KC_P,     KC_BSPC,
-    SYMBOLS,       GUI_A,   ALT_S,   SFT_D,   CTL_F,   KC_G,    KC_H,     CTL_J,  SFT_K,   ALT_L,   GUI_SCLN, KC_QUOT,
-    OSM(MOD_LSFT), KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,     KC_M,   KC_COMM, KC_DOT,  KC_SLSH,  KC_ENT,
-    TO(_DEFAULT),  KC_ESC, KC_ESC, ALT, ONESHOT, NUMBERS, NAVIGATION, KC_SPC, KC_ESC,  KC_DEL,  KC_DOWN,  KC_UP
+    KC_TAB,        KC_Q,    KC_W,    KC_E,  KC_R,    KC_T,    KC_Y,       KC_U,   KC_I,    KC_O,    KC_P,     KC_BSPC,
+    KC_ESC,        GUI_A,   ALT_S,   SFT_D, CTL_F,   KC_G,    KC_H,       CTL_J,  SFT_K,   ALT_L,   GUI_SCLN, KC_QUOT,
+    OSM(MOD_LSFT), KC_Z,    KC_X,    KC_C,  KC_V,    KC_B,    KC_N,       KC_M,   KC_COMM, KC_DOT,  KC_SLSH,  KC_ENT,
+    TO(_DEFAULT),  _______, _______, ALT,   SYMBOLS, ONESHOT, NAVIGATION, KC_SPC, KC_ESC,  KC_DEL,  KC_DOWN,  KC_UP
 ),
 
 /* One Shot
@@ -111,13 +111,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_ONESHOT] = LAYOUT_planck_grid(
-    MEDIA,   GC_LEFT, G_1,        G_2,    GC_RIGHT, G_TAB,   _______, _______,   MOUSE,  GAMING,  _______, G_L,
-    A_F4,    KC_WBAK, GS_S,       G_E,    KC_WFWD,  KC_HOME, G_LEFT,  G_DOWN,  G_UP,    G_RIGHT,  _______, KC_DEL,
-    _______, _______, KC_PSCREEN, C_INS,  S_INS,    KC_END,  GS_LEFT, KC_F2,   _______, GS_RIGHT, _______, KC_CAPSLOCK,
-    _______, _______, KC_F11,     KC_F12, _______,  _______, _______, _______, _______, _______,  _______, _______
+    A_F4,    KC_PSCREEN, KC_WBAK, KC_HOME, KC_END,  KC_WFWD, _______, KC_7, KC_8,    KC_9,   KC_MINUS,    KC_SLSH,
+    _______, GUI_A,      ALT_S,   SFT_D,   CTL_F,   KC_F11,  _______, KC_4, KC_5,    KC_6,   KC_PLUS,     KC_DEL,
+    MEDIA,   GS_S,       KC_F2,   C_INS,   S_INS,   KC_F12,  _______, KC_1, KC_2,    KC_3,   KC_ASTERISK, KC_ENT,
+    _______, _______,    _______, _______, _______, _______, _______, KC_0, KC_COMM, KC_DOT, _______,     _______
 ),
 
-/* Numbers
+/* Layers
  * ,-----------------------------------------------------------------------------------.
  * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -128,11 +128,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
  * `-----------------------------------------------------------------------------------'F
  */
-[_NUMBERS] = LAYOUT_planck_grid(
-    _______, KC_1,          KC_2,          KC_3,          KC_4,          KC_5,    KC_6,    KC_7,        KC_8,           KC_9,        KC_0,     KC_BSPC,
-    _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______, _______, KC_PLUS,     KC_COMM,        KC_DOT,      KC_EQUAL, KC_DEL,
-    _______, _______,       _______,       KC_PGUP,       KC_PGDOWN,     _______, _______, KC_MINUS,    KC_ASTERISK,    KC_SLSH, _______,  _______,
-    _______, _______,       _______,       _______,       _______,       _______, _______, _______,     _______,        _______,     _______,  _______
+[_LAYERS] = LAYOUT_planck_grid(
+    _______,      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______,      _______, _______, _______, _______, _______, _______, MOUSE,   GAMING,  _______, _______, _______,
+    _______,      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    TO(_DEFAULT), _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
 /* Symbols
@@ -149,8 +149,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_SYMBOLS] = LAYOUT_planck_grid(
     _______, KC_EXCLAIM,    KC_AT,         KC_HASH,       KC_DOLLAR,     KC_PERCENT, KC_CIRCUMFLEX, KC_AMPERSAND, KC_ASTERISK,   KC_LEFT_PAREN,       KC_RIGHT_PAREN,       KC_BSPC,
     _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______,    KC_GRAVE,      KC_MINUS,     KC_EQUAL,      KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, KC_PIPE,
-    _______, _______,       _______,       _______,       _______,       _______,    KC_UNDERSCORE, KC_TILDE,     KC_PLUS,       KC_LBRACKET,         KC_RBRACKET,          KC_BSLASH,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    _______, _______,       G_TAB,         GC_LEFT,       GC_RIGHT,      _______,    KC_UNDERSCORE, KC_TILDE,     KC_PLUS,       KC_LBRACKET,         KC_RBRACKET,          KC_BSLASH,
+    _______, _______,       _______,       _______,       _______,       _______,    _______,       _______,      _______,       _______,             _______,              _______
 ),
 
 /* Navigation
@@ -165,10 +165,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_NAVIGATION] = LAYOUT_planck_grid(
-    _______, _______,       _______,       _______,       _______,       _______, KC_MEDIA_PREV_TRACK, KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP, KC_MEDIA_NEXT_TRACK,   _______, KC_BSPC,
-    _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______, KC_LEFT,             KC_DOWN,             KC_UP,           KC_RIGHT,              _______, KC_DEL,
-    _______, _______,       KC_TAPP,       KC_TAPU,       KC_TAPD,       _______, KC_MEDIA_REWIND,     KC_MEDIA_PLAY_PAUSE, KC_AUDIO_MUTE,   KC_MEDIA_FAST_FORWARD, _______, _______,
-    _______, _______,       _______,       _______,       _______,       _______, _______,             _______,             _______,         _______,               _______, _______
+    _______, _______,       KC_TAPP,       KC_TAPU,       KC_TAPD,       _______, _______,             KC_AUDIO_MUTE,     KC_UP,           KC_MEDIA_NEXT_TRACK, _______, KC_BSPC,
+    _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______, KC_MEDIA_PLAY_PAUSE, KC_LEFT,           KC_DOWN,         KC_RIGHT,            _______, KC_DEL,
+    _______, _______,       _______,       KC_HOME,       KC_END,        _______, KC_MEDIA_PREV_TRACK, KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP, KC_MEDIA_NEXT_TRACK, _______, _______,
+    _______, _______,       _______,       _______,       _______,       _______, _______,             _______,           _______,         _______,             _______, _______
 ),
 
 /* Media
@@ -219,10 +219,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_GAMING] = LAYOUT_planck_grid(
-    KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, KC_Y,    KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC,
-    KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G, KC_H,    KC_J,   KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_N,    KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
-    KC_LCTL, KC_4,    KC_3,    KC_2,    KC_SPC,  KC_1, KC_LBRC, KC_RBRC,_______, _______, _______, TO(_DEFAULT)
+    KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, KC_Y,    KC_U,   KC_I,    KC_O,              KC_P,            KC_BSPC,
+    KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G, KC_H,    KC_J,   KC_K,    KC_L,              KC_SCLN,         KC_QUOT,
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_N,    KC_M,   KC_COMM, KC_DOT,            KC_SLSH,         KC_ENT,
+    KC_LCTL, KC_4,    KC_3,    KC_2,    KC_SPC,  KC_1, KC_LBRC, KC_RBRC,_______, KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP, TO(_DEFAULT)
 ),
 
 /* Adjust (Lower + Raise)
@@ -254,7 +254,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _NUMBERS, _NAVIGATION, _ADJUST);
+  return update_tri_layer_state(state, _ONESHOT, _NAVIGATION, _ADJUST);
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
