@@ -17,10 +17,12 @@
 #include QMK_KEYBOARD_H
 #include "muse.h"
 
-enum planck_layers { _DEFAULT, _ONESHOT, _LAYERS, _SYMBOLS, _NAVIGATION, _MOUSE, _GAMING, _MEDIA, _ADJUST, _ALT };
+enum planck_layers { _QWERTY, _COLEMAK, _ONESHOT, _LAYERS, _SYMBOLS, _NAVIGATION, _MOUSE, _GAMING, _MEDIA, _ADJUST, _ALT };
 
 enum planck_keycodes {
-    A_TAB = SAFE_RANGE,     // alt tab
+    QWERTY = SAFE_RANGE,
+    COLEMAK,
+    A_TAB,     // alt tab
     A_F4,      // close window
     C_INS,     // copy in some terminals
     S_INS,     // paste in some terminals
@@ -68,16 +70,17 @@ uint16_t alt_tab_timer     = 0;
 #define GUI_SCLN RGUI_T(KC_SCLN)
 
 // Left-hand home row mods
-#define GUI_A LGUI_T(KC_A)
-#define ALT_S LALT_T(KC_S)
-#define SFT_D LSFT_T(KC_D)
-#define CTL_F LCTL_T(KC_F)
+#define HOME_A LGUI_T(KC_A)
+#define HOME_R LALT_T(KC_R)
+#define HOME_S LSFT_T(KC_S)
+#define HOME_T LCTL_T(KC_T)
 
 // Right-hand home row mods
-#define CTL_J RCTL_T(KC_J)
-#define SFT_K RSFT_T(KC_K)
-#define ALT_L LALT_T(KC_L)
-#define GUI_SCLN RGUI_T(KC_SCLN)
+#define HOME_N RCTL_T(KC_N)
+#define HOME_E RSFT_T(KC_E)
+#define HOME_I LALT_T(KC_I)
+#define HOME_O RGUI_T(KC_O)
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -92,11 +95,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      | Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
  */
-[_DEFAULT] = LAYOUT_planck_grid(
-    KC_TAB,        KC_Q,    KC_W,    KC_E,  KC_R,    KC_T,    KC_Y,       KC_U,   KC_I,    KC_O,    KC_P,     KC_BSPC,
-    KC_ESC,        GUI_A,   ALT_S,   SFT_D, CTL_F,   KC_G,    KC_H,       CTL_J,  SFT_K,   ALT_L,   GUI_SCLN, KC_QUOT,
-    OSM(MOD_LSFT), KC_Z,    KC_X,    KC_C,  KC_V,    KC_B,    KC_N,       KC_M,   KC_COMM, KC_DOT,  KC_SLSH,  KC_ENT,
-    TO(LAYERS),  _______, _______, ALT,   SYMBOLS, ONESHOT, NAVIGATION, KC_SPC, KC_ESC,  KC_DEL,  KC_DOWN,  KC_UP
+[_QWERTY] = LAYOUT_planck_grid(
+    KC_TAB,        KC_Q,    KC_W,      KC_E,  KC_R,    KC_T,    KC_Y,       KC_U,   KC_I,    KC_O,    KC_P,     KC_BSPC,
+    KC_ESC,        GUI_A,   ALT_S,     SFT_D, CTL_F,   KC_G,    KC_H,       CTL_J,  SFT_K,   ALT_L,   GUI_SCLN, KC_QUOT,
+    OSM(MOD_LSFT), KC_Z,    KC_X,      KC_C,  KC_V,    KC_B,    KC_N,       KC_M,   KC_COMM, KC_DOT,  KC_SLSH,  KC_ENT,
+    OSL(LAYERS),    _______, _______,   ALT,   SYMBOLS, ONESHOT, NAVIGATION, KC_SPC, KC_ESC,  KC_DEL,  KC_DOWN,  KC_UP
+),
+
+/* COLEMAK
+ * ,-----------------------------------------------------------------------------------.
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Esc  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Sh/En |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      | Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_COLEMAK] = LAYOUT_planck_grid(
+    KC_TAB,        KC_Q,    KC_W,    KC_F,   KC_P,    KC_G,    KC_J,       KC_L,   KC_U,    KC_Y,   KC_SCLN, KC_BSPC,
+    KC_ESC,        HOME_A,  HOME_R,  HOME_S, HOME_T,  KC_D,    KC_H,       HOME_N, HOME_E,  HOME_I, HOME_O,  KC_QUOT,
+    OSM(MOD_LSFT), KC_Z,    KC_X,    KC_C,   KC_V,    KC_B,    KC_K,       KC_M,   KC_COMM, KC_DOT, KC_SLSH, KC_ENT,
+    OSL(LAYERS),    _______, _______, ALT,    SYMBOLS, ONESHOT, NAVIGATION, KC_SPC, KC_ESC,  KC_DEL, KC_DOWN, KC_UP
 ),
 
 /* One Shot
@@ -129,10 +150,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'F
  */
 [_LAYERS] = LAYOUT_planck_grid(
-    _______,      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______,      _______, _______, _______, _______, _______, _______, MOUSE,   GAMING,  _______, _______, _______,
-    _______,      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    TO(_DEFAULT), _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    _______, _______, _______, _______, _______, _______, _______, MOUSE,   GAMING, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, QWERTY,  COLEMAK,  _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
 /* Symbols
@@ -222,7 +243,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, KC_Y,    KC_U,   KC_I,    KC_O,              KC_P,            KC_BSPC,
     KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G, KC_H,    KC_J,   KC_K,    KC_L,              KC_SCLN,         KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_N,    KC_M,   KC_COMM, KC_DOT,            KC_SLSH,         KC_ENT,
-    KC_LCTL, KC_4,    KC_3,    KC_2,    KC_SPC,  KC_1, KC_LBRC, KC_RBRC,_______, KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP, TO(_DEFAULT)
+    KC_LCTL, KC_4,    KC_3,    KC_2,    KC_SPC,  KC_1, KC_LBRC, KC_RBRC,_______, KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP, OSL(LAYERS)
 ),
 
 /* Adjust (Lower + Raise)
@@ -259,6 +280,19 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case QWERTY:
+            if (record->event.pressed) {
+                print("mode just switched to qwerty and this is a huge string\n");
+                set_single_persistent_default_layer(_QWERTY);
+            }
+            return false;
+            break;
+        case COLEMAK:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_COLEMAK);
+            }
+            return false;
+            break;
         case A_TAB:
             if (record->event.pressed) {
                 if (!is_alt_tab_active) {
