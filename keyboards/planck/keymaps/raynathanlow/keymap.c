@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,        KC_Q,    KC_W,    KC_E,  KC_R,    KC_T,    KC_Y,       KC_U,   KC_I,    KC_O,    KC_P,     KC_BSPC,
     KC_ESC,        GUI_A,   ALT_S,   SFT_D, CTL_F,   KC_G,    KC_H,       CTL_J,  SFT_K,   ALT_L,   GUI_SCLN, KC_QUOT,
     OSM(MOD_LSFT), KC_Z,    KC_X,    KC_C,  KC_V,    KC_B,    KC_N,       KC_M,   KC_COMM, KC_DOT,  KC_SLSH,  KC_ENT,
-    TO(_DEFAULT),  _______, _______, ALT,   SYMBOLS, ONESHOT, NAVIGATION, KC_SPC, KC_ESC,  KC_DEL,  KC_DOWN,  KC_UP
+    TO(LAYERS),  _______, _______, ALT,   SYMBOLS, ONESHOT, NAVIGATION, KC_SPC, KC_ESC,  KC_DEL,  KC_DOWN,  KC_UP
 ),
 
 /* One Shot
@@ -111,10 +111,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_ONESHOT] = LAYOUT_planck_grid(
-    A_F4,    KC_PSCREEN, KC_WBAK, KC_HOME, KC_END,  KC_WFWD, _______, KC_7, KC_8,    KC_9,   KC_MINUS,    KC_SLSH,
-    _______, GUI_A,      ALT_S,   SFT_D,   CTL_F,   KC_F11,  _______, KC_4, KC_5,    KC_6,   KC_PLUS,     KC_DEL,
-    MEDIA,   GS_S,       KC_F2,   C_INS,   S_INS,   KC_F12,  _______, KC_1, KC_2,    KC_3,   KC_ASTERISK, KC_ENT,
-    _______, _______,    _______, _______, _______, _______, _______, KC_0, KC_COMM, KC_DOT, _______,     _______
+    A_F4, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_BSPC,
+    KC_HOME, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), KC_F12, KC_F2, KC_PLUS, KC_COMM, KC_DOT, KC_SLSH, KC_DEL,
+    KC_END, GS_S, KC_WBAK, KC_PGUP, KC_PGDN, KC_WFWD, KC_F11, KC_MINUS, KC_ASTERISK, _______, _______, KC_ENT,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
 /* Layers
@@ -165,10 +165,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_NAVIGATION] = LAYOUT_planck_grid(
-    _______, _______,       KC_TAPP,       KC_TAPU,       KC_TAPD,       _______, _______,             KC_AUDIO_MUTE,     KC_UP,           KC_MEDIA_NEXT_TRACK, _______, KC_BSPC,
-    _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______, KC_MEDIA_PLAY_PAUSE, KC_LEFT,           KC_DOWN,         KC_RIGHT,            _______, KC_DEL,
-    _______, _______,       _______,       KC_HOME,       KC_END,        _______, KC_MEDIA_PREV_TRACK, KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP, KC_MEDIA_NEXT_TRACK, _______, _______,
-    _______, _______,       _______,       _______,       _______,       _______, _______,             _______,           _______,         _______,             _______, _______
+    _______, _______,       KC_TAPP,       KC_TAPU,       KC_TAPD,       _______, _______,             KC_MEDIA_PLAY_PAUSE, KC_AUDIO_MUTE,   _______,             _______, KC_BSPC,
+    _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______, KC_LEFT,             KC_DOWN,             KC_UP,           KC_RIGHT,            _______, KC_DEL,
+    _______, _______,       _______,       KC_HOME,       KC_END,        _______, KC_MEDIA_PREV_TRACK, KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP, KC_MEDIA_NEXT_TRACK, _______, _______,
+    _______, _______,       _______,       _______,       _______,       _______, _______,             _______,             _______,         _______,             _______, _______
 ),
 
 /* Media
@@ -406,3 +406,22 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return TAPPING_TERM;
     }
 }
+
+// bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+//     switch (keycode) {
+//         case GUI_A:
+//         case GUI_SCLN:
+//             return false;
+//         case ALT_S:
+//         case ALT_L:
+//             return false;
+//         case SFT_D:
+//         case SFT_K:
+//             return true;
+//         case CTL_F:
+//         case CTL_J:
+//             return true;
+//         default:
+//             return false;
+//     }
+// }

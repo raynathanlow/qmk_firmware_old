@@ -15,4 +15,5 @@
 #define TAPPING_FORCE_HOLD_PER_KEY
 
 // Apply the modifier on keys that are tapped during a short hold of a modtap
+// #define PERMISSIVE_HOLD_PER_KEY
 #define PERMISSIVE_HOLD
