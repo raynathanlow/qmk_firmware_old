@@ -169,8 +169,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_SYMBOLS] = LAYOUT_planck_grid(
     _______, KC_EXCLAIM,    KC_AT,         KC_HASH,       KC_DOLLAR,     KC_PERCENT, KC_CIRCUMFLEX, KC_AMPERSAND, KC_ASTERISK,   KC_LEFT_PAREN,       KC_RIGHT_PAREN,       KC_BSPC,
-    _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______,    KC_GRAVE,      KC_MINUS,     KC_EQUAL,      KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, KC_PIPE,
-    _______, _______,       G_TAB,         GC_LEFT,       GC_RIGHT,      _______,    KC_UNDERSCORE, KC_TILDE,     KC_PLUS,       KC_LBRACKET,         KC_RBRACKET,          KC_BSLASH,
+    KC_CAPS, KC_GRAVE,      KC_PIPE,       KC_BSLASH,     KC_UNDERSCORE, _______,    _______,       KC_MINUS,     KC_EQUAL,      KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, _______,
+    _______, _______,       G_TAB,         GC_LEFT,       GC_RIGHT,      _______,    _______,       KC_TILDE,     KC_PLUS,       KC_LBRACKET,         KC_RBRACKET,          _______,
     _______, _______,       _______,       _______,       _______,       _______,    _______,       _______,      _______,       _______,             _______,              _______
 ),
 
@@ -186,8 +186,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_NAVIGATION] = LAYOUT_planck_grid(
-    _______, _______,       KC_TAPP,       KC_TAPU,       KC_TAPD,       _______, _______,             KC_MEDIA_PLAY_PAUSE, KC_AUDIO_MUTE,   _______,             _______, KC_BSPC,
-    _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______, KC_LEFT,             KC_DOWN,             KC_UP,           KC_RIGHT,            _______, KC_DEL,
+    _______, _______,       KC_TAPP,       KC_TAPU,       KC_TAPD,       _______, _______,             KC_MEDIA_PLAY_PAUSE, KC_UP,           KC_AUDIO_MUTE,       _______, KC_BSPC,
+    _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______, _______,             KC_LEFT,             KC_DOWN,         KC_RIGHT,            _______, KC_DEL,
     _______, _______,       _______,       KC_HOME,       KC_END,        _______, KC_MEDIA_PREV_TRACK, KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP, KC_MEDIA_NEXT_TRACK, _______, _______,
     _______, _______,       _______,       _______,       _______,       _______, _______,             _______,             _______,         _______,             _______, _______
 ),
