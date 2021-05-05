@@ -169,7 +169,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_SYMBOLS] = LAYOUT_planck_grid(
     _______, KC_EXCLAIM,    KC_AT,         KC_HASH,       KC_DOLLAR,     KC_PERCENT, KC_CIRCUMFLEX, KC_AMPERSAND, KC_ASTERISK,   KC_LEFT_PAREN,       KC_RIGHT_PAREN,       KC_BSPC,
-    KC_CAPS, KC_GRAVE,      KC_PIPE,       KC_BSLASH,     KC_UNDERSCORE, _______,    _______,       KC_MINUS,     KC_EQUAL,      KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, _______,
+    KC_CAPS, KC_GRAVE,      KC_PIPE,       KC_BSLASH,     KC_UNDERSCORE, _______,    _______,       KC_MINUS,     KC_EQUAL,      KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, KC_DEL,
     _______, _______,       G_TAB,         GC_LEFT,       GC_RIGHT,      _______,    _______,       KC_TILDE,     KC_PLUS,       KC_LBRACKET,         KC_RBRACKET,          _______,
     _______, _______,       _______,       _______,       _______,       _______,    _______,       _______,      _______,       _______,             _______,              _______
 ),
@@ -243,7 +243,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, KC_Y,    KC_U,   KC_I,    KC_O,              KC_P,            KC_BSPC,
     KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G, KC_H,    KC_J,   KC_K,    KC_L,              KC_SCLN,         KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_N,    KC_M,   KC_COMM, KC_DOT,            KC_SLSH,         KC_ENT,
-    KC_LCTL, KC_4,    KC_3,    KC_2,    KC_SPC,  KC_1, KC_LBRC, KC_RBRC,_______, KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP, TO(_QWERTY)
+    KC_LCTL, KC_4,    KC_3,    KC_2,    KC_SPC,  KC_1, KC_LBRC, KC_RBRC,KC_PSCR, KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP, TO(_QWERTY)
 ),
 
 /* Adjust (Lower + Raise)
