@@ -133,7 +133,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ONESHOT] = LAYOUT_planck_grid(
     A_F4, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_BSPC,
-    KC_HOME, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), KC_F12, KC_F2, KC_PLUS, KC_COMM, KC_DOT, KC_SLSH, KC_DEL,
+    KC_HOME, KC_LGUI, KC_LALT, KC_LSHIFT, KC_LCTRL, KC_F12, KC_F2, KC_PLUS, KC_COMM, KC_DOT, KC_SLSH, KC_DEL,
     KC_END, GS_S, KC_WBAK, KC_PGUP, KC_PGDN, KC_WFWD, KC_F11, KC_MINUS, KC_ASTERISK, _______, _______, KC_ENT,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
@@ -186,10 +186,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_NAVIGATION] = LAYOUT_planck_grid(
-    _______, _______,       KC_TAPP,       KC_TAPU,       KC_TAPD,       _______, _______,             KC_MEDIA_PLAY_PAUSE, KC_UP,           KC_AUDIO_MUTE,       _______, KC_BSPC,
-    _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______, _______,             KC_LEFT,             KC_DOWN,         KC_RIGHT,            _______, KC_DEL,
-    _______, _______,       _______,       KC_HOME,       KC_END,        _______, KC_MEDIA_PREV_TRACK, KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP, KC_MEDIA_NEXT_TRACK, _______, _______,
-    _______, _______,       _______,       _______,       _______,       _______, _______,             _______,             _______,         _______,             _______, _______
+    _______, _______, KC_TAPP, KC_TAPU,   KC_TAPD,       _______, _______,             KC_MEDIA_PLAY_PAUSE, KC_UP,           KC_AUDIO_MUTE,       _______, KC_BSPC,
+    _______, KC_LGUI, KC_LALT, KC_LSHIFT, KC_LCTRL, _______, _______,             KC_LEFT,             KC_DOWN,         KC_RIGHT,            _______, KC_DEL,
+    _______, _______, _______, KC_HOME,   KC_END,        _______, KC_MEDIA_PREV_TRACK, KC_AUDIO_VOL_DOWN,   KC_AUDIO_VOL_UP, KC_MEDIA_NEXT_TRACK, _______, _______,
+    _______, _______, _______, _______,   _______,       _______, _______,             _______,             _______,         _______,             _______, _______
 ),
 
 /* Media
