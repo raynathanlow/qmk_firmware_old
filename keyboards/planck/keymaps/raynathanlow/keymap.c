@@ -47,7 +47,7 @@ bool is_alt_tab_active = false;
 #define L_NAV MO(_LEFT_NAVIGATION)
 #define SWAPPER MO(_SWAPPER)
 #define MEDIA MO(_MEDIA)
-#define FUNCTION OSL(_FUNCTION)
+#define FUNCTION MO(_FUNCTION)
 #define GAME TG(_GAME)
 
 // QWERTY
