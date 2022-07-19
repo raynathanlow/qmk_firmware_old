@@ -17,3 +17,19 @@
 // Apply the modifier on keys that are tapped during a short hold of a modtap
 // #define PERMISSIVE_HOLD_PER_KEY
 #define PERMISSIVE_HOLD
+
+// https://github.com/manna-harbour/miryoku_qmk/blob/bdb9fd81e8aa2afb3882f7c0f6ae2d3ba448ac93/users/manna-harbour_miryoku/config.h#L23-L33
+// default: 50
+#define MOUSEKEY_INTERVAL 16
+
+// default: 300
+#define MOUSEKEY_DELAY 0
+
+// default: 20
+#define MOUSEKEY_TIME_TO_MAX 60
+
+// default: 10
+#define MOUSEKEY_MAX_SPEED 7
+
+// default: 300
+#define MOUSEKEY_WHEEL_DELAY 0
